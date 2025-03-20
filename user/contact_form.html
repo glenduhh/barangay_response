@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+
+    <link rel="stylesheet" href="contact_form.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">   
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $("#contactForm").submit(function(event) {
+                event.preventDefault(); // Prevent the form from submitting normally
+
+                $.ajax({
+                    url: '../contact_form.php',
+                    type: 'POST',
+                    data: $(this).serialize(),
+                    success: function(response) {
+                        $("#result").html(response); // Update the result div with the response
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <form id="contactForm" class="form" method="post">
+        <p class="title">Register</p>
+        <p class="message">Sign up for future updates.</p>
+        <div class="flex">
+            <label>
+                <input name="firstname" required placeholder="" type="text" class="input">
+                <span>Firstname</span>
+            </label>
+
+            <label>
+                <input name="lastname" required placeholder="" type="text" class="input">
+                <span>Lastname</span>
+            </label>
+        </div>  
+                
+        <label>
+            <input name="email" required placeholder="" type="email" class="input">
+            <span>Email</span>
+        </label> 
+            
+        <label>
+            <input name="phone_number" required placeholder="" type="text" class="input">
+            <span>Phone Number</span>
+        </label>
+        
+        <button class="submit">Register</button>
+        <p class="signin">Already registered? <a href="user.html">Go back</a></p>
+        <div id="result"></div>
+    </form>
+
+    
+  
+</body>
+</html>
